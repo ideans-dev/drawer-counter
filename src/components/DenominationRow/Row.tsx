@@ -9,6 +9,8 @@ interface IProps {
 
 export default function Row( props: IProps ) {
 
+  const { dispatchFn, denomination } = props;
+
   const [ amount, setAmount ] = React.useState();
   const [ total, setTotal ] = React.useState( 0 );
 
@@ -19,7 +21,7 @@ export default function Row( props: IProps ) {
   }
 
   React.useEffect( () => {
-    props.dispatchFn( { type: `update ${ props.denomination }s`, payload: total } )
+    dispatchFn( { type: `update ${ denomination }s`, payload: total } )
   }, [ total ] )
 
 
