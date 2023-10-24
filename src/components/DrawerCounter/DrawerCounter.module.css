@@ -1,0 +1,17 @@
+.container {
+  /* border: solid white 1px; */
+  min-height: 50vh;
+  width: 60%;
+  min-width: 390px;
+  padding: 0 2em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.totalValue {
+  font-size: 3em;
+  font-weight: 900;
+}
