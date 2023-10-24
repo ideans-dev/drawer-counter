@@ -23,7 +23,7 @@ export default function Row( props: IProps ) {
   React.useEffect( () => {
     const actionType = `update ${denomination}s`
     dispatchFn( { type: actionType, payload: total } )
-  }, [ total ] )
+  }, [ total, dispatchFn, denomination ] )
 
 
   return (
