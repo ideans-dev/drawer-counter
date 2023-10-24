@@ -29,7 +29,7 @@ export default function Row( props: IProps ) {
   return (
     <div className={ styles.row }>
       <span className={ styles.denomination }>
-        { props.denomination }'s
+        { props.denomination }$apos;s
       </span>
       <span className={ styles.input }>
         <input type="number" onChange={ handleChange } value={ amount } />
