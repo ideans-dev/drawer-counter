@@ -21,7 +21,8 @@ export default function Row( props: IProps ) {
   }
 
   React.useEffect( () => {
-    dispatchFn( { type: `update ${ denomination }s`, payload: total } )
+    const actionType = `update ${denomination}s`
+    dispatchFn( { type: actionType, payload: total } )
   }, [ total ] )
 
 
