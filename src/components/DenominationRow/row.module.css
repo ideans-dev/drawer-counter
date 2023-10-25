@@ -12,8 +12,12 @@
     min-width: 15%;
 }
 
-.input {
+.inputContainer {
     min-width: 30%;
+}
+
+.input {
+  line-height: 2em;
 }
 
 .total {

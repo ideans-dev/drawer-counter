@@ -85,7 +85,7 @@ export default function DrawerCounter() {
       <Row dispatchFn={ dispatch } denomination={ 100 } />
 
 
-      <div>
+      <div className={styles.totalRow}>
         <span className={ styles.totalValue }>
           ${ total }
         </span>

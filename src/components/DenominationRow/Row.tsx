@@ -31,8 +31,8 @@ export default function Row( props: IProps ) {
       <span className={ styles.denomination }>
         { props.denomination }s
       </span>
-      <span className={ styles.input }>
-        <input type="number" onChange={ handleChange } value={ amount } />
+      <span className={ styles.inputContainer }>
+        <input className={styles.input} type="number" onChange={ handleChange } value={ amount } />
       </span>
       <span className={ styles.total }>
         ${ total }

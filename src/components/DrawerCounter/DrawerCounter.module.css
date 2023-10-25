@@ -11,6 +11,13 @@
   align-items: stretch;
 }
 
+.totalRow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1em;
+}
+
 .totalValue {
   font-size: 3em;
   font-weight: 900;
