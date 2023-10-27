@@ -78,7 +78,9 @@ export default function DrawerCounter() {
 
   React.useEffect(() => {
     let newDifference = Number(total) - Number(expectedTotal);
-    setDifference( newDifference );
+    if ( Number(newDifference ) ) {
+      setDifference( newDifference );
+    }
   }, [total, expectedTotal])
 
   const handleChangeExpected = ({target: { value }}: any) => {
@@ -103,11 +105,6 @@ export default function DrawerCounter() {
         <span className={styles.totalValue}>
           ${total}
         </span>
-      </div>
-
-      <div className={styles.expectedRow}>
-        <span></span>
-        <span></span>
       </div>
 
       <div className={styles.differenceRow}>
