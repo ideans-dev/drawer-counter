@@ -22,8 +22,8 @@ const INITIAL_STATE: IState = {
   "100": 0,
 }
 
-function reducer( state: IState, action: any ): IState {
-  switch ( action.type ) {
+function reducer(state: IState, action: any): IState {
+  switch (action.type) {
     case 'update 1s': {
       const newState: IState = { ...state, "1": action.payload };
       return newState;
@@ -55,41 +55,76 @@ function reducer( state: IState, action: any ): IState {
   }
 }
 
-function calculateTotal( denominationValues: number[] ): number {
-  return denominationValues.reduce( ( total, currentValue ) => {
+function calculateTotal(denominationValues: number[]): number {
+  return denominationValues.reduce((total, currentValue) => {
     total += currentValue;
     return total;
-  }, 0 )
+  }, 0)
 }
 
 export default function DrawerCounter() {
 
-  const [ total, setTotal ] = React.useState( 0 );
-  const [ state, dispatch ] = React.useReducer( reducer, INITIAL_STATE );
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+  const [total, setTotal] = React.useState(0);
+  const [expectedTotal, setExpectedTotal] = React.useState();
+  const [difference, setDifference] = React.useState(0);
 
-  React.useEffect( () => {
-    let denominationValues = Object.values( state );
-    let newTotal = calculateTotal( denominationValues );
-    setTotal( newTotal )
-  }, [ state ] )
+
+  React.useEffect(() => {
+    let denominationValues = Object.values(state);
+    let newTotal = calculateTotal(denominationValues);
+    setTotal(newTotal)
+  }, [state])
+
+  React.useEffect(() => {
+    let newDifference = Number(total) - Number(expectedTotal);
+    setDifference( newDifference );
+  }, [total, expectedTotal])
+
+  const handleChangeExpected = ({target: { value }}: any) => {
+    setExpectedTotal( value );
+  }
 
 
   return (
-    <div className={ styles.container }>
+    <div className={styles.container}>
 
-      <Row dispatchFn={ dispatch } denomination={ 1 } />
-      <Row dispatchFn={ dispatch } denomination={ 5 } />
-      <Row dispatchFn={ dispatch } denomination={ 10 } />
-      <Row dispatchFn={ dispatch } denomination={ 20 } />
-      <Row dispatchFn={ dispatch } denomination={ 50 } />
-      <Row dispatchFn={ dispatch } denomination={ 100 } />
+      <Row dispatchFn={dispatch} denomination={1} />
+      <Row dispatchFn={dispatch} denomination={5} />
+      <Row dispatchFn={dispatch} denomination={10} />
+      <Row dispatchFn={dispatch} denomination={20} />
+      <Row dispatchFn={dispatch} denomination={50} />
+      <Row dispatchFn={dispatch} denomination={100} />
 
 
       <div className={styles.totalRow}>
-        <span className={ styles.totalValue }>
-          ${ total }
+        <span>Total</span>
+        <span> </span>
+        <span className={styles.totalValue}>
+          ${total}
         </span>
       </div>
+
+      <div className={styles.expectedRow}>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div className={styles.differenceRow}>
+        <span>Expect</span>
+        <span className={styles.inputContainer}>
+        <input
+          className={styles.expectedInput}
+          type="number"
+          onChange={ handleChangeExpected }
+          value={expectedTotal}
+          />
+        </span>
+        <span className={styles.difference}>
+          ${difference}
+        </span>
+      </div>
+
     </div>
   )
 }

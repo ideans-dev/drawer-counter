@@ -16,14 +16,11 @@
     min-width: 30%;
 }
 
-.input {
-  line-height: 2em;
-}
-
 .total {
     min-width: 15%;
 }
 
 .input {
   line-height: 2em;
+  font-size: 22px;
 }

@@ -4,6 +4,7 @@
   width: 60%;
   min-width: 390px;
   padding: 0 2em;
+  min-height: 80vh;
 
   display: flex;
   flex-direction: column;
@@ -11,14 +12,30 @@
   align-items: stretch;
 }
 
-.totalRow {
-  width: 100%;
+.totalRow, .differenceRow, .expectedRow {
   display: flex;
-  justify-content: flex-end;
-  padding-right: 1em;
+  justify-content: space-between;
+  min-width: 100%;
+  align-items: center;
+  height: 100%;
 }
 
-.totalValue {
-  font-size: 3em;
-  font-weight: 900;
+.totalRow span, .expectedRow span {
+  min-width: 15%;
+}
+
+.inputContainer {
+  min-width: 30%;
+}
+
+.expectedInput {
+  line-height: 2em;
+  font-size: 22px;
+  /* min-width: 30%; */
+}
+
+.totalValue, .difference {
+  font-size: 28px;
+  font-weight: 700;
+  min-width: 15%;
 }
