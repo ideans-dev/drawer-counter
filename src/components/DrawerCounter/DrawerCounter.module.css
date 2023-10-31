@@ -1,19 +1,26 @@
 .container {
-  /* border: solid white 1px; */
   min-height: 50vh;
-  width: 60%;
+  /* width: 60%; */
   min-width: 390px;
-  max-width: 500px;
-  padding: 0 2em;
   min-height: 80vh;
+  padding: 0 2em;
 
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+
 }
 
-.totalRow, .differenceRow {
+.denominationRows, .dataRows {
+  /* border: groove white 1px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.totalRow, .differenceRow, .differenceRow2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,6 +28,11 @@
   align-items: center;
   height: 1em;
   min-height: 60px;
+  padding: 1em;
+}
+
+.differenceRow span, .totalRow span, .differenceRow2 span {
+  width: 25%;
 }
 
 .totalRow span {
@@ -28,17 +40,17 @@
 }
 
 .inputContainer {
-  min-width: 30%;
+  min-width: 15%;
 }
 
 .expectedInput {
   line-height: 2em;
   font-size: 22px;
-  /* min-width: 30%; */
+  max-width: 80%;
 }
-
+/* 
 .totalValue, .difference {
   font-size: 28px;
   font-weight: 700;
   min-width: 15%;
-}
+} */

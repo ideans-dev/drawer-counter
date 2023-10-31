@@ -78,49 +78,63 @@ export default function DrawerCounter() {
 
   React.useEffect(() => {
     let newDifference = Number(total) - Number(expectedTotal);
-    if ( Number(newDifference ) ) {
-      setDifference( newDifference );
+    if (Number(newDifference)) {
+      setDifference(newDifference);
     }
   }, [total, expectedTotal])
 
-  const handleChangeExpected = ({target: { value }}: any) => {
-    setExpectedTotal( value );
+  const handleChangeExpected = ({ target: { value } }: any) => {
+    setExpectedTotal(value);
   }
 
 
   return (
     <div className={styles.container}>
 
-      <Row dispatchFn={dispatch} denomination={1} />
-      <Row dispatchFn={dispatch} denomination={5} />
-      <Row dispatchFn={dispatch} denomination={10} />
-      <Row dispatchFn={dispatch} denomination={20} />
-      <Row dispatchFn={dispatch} denomination={50} />
-      <Row dispatchFn={dispatch} denomination={100} />
+      <div className={styles.dataRows}>
+        <div className={styles.totalRow}>
+          <span>Total</span>
+          <span> </span>
+          <span className={styles.totalValue}>
+            ${total}
+          </span>
+        </div>
 
+        <div className={styles.differenceRow}>
+          <span>Expected</span>
+          <span></span>
+          <span className={styles.inputContainer}>
+            <input
+              className={[styles.expectedInput].join(" ")}
+              type="number"
+              onChange={handleChangeExpected}
+              value={expectedTotal}
+            />
+          </span>
 
-      <div className={styles.totalRow}>
-        <span>Total</span>
-        <span> </span>
-        <span className={styles.totalValue}>
-          ${total}
-        </span>
+        </div>
+        <div className={styles.differenceRow2}>
+          <span></span>
+          <span></span>
+          <span className={styles.difference}>
+            ${difference}
+          </span>
+        </div>
+
       </div>
 
-      <div className={styles.differenceRow}>
-        <span>Expect</span>
-        <span className={styles.inputContainer}>
-        <input
-          className={styles.expectedInput}
-          type="number"
-          onChange={ handleChangeExpected }
-          value={expectedTotal}
-          />
-        </span>
-        <span className={styles.difference}>
-          ${difference}
-        </span>
+
+      <div className={styles.denominationRows}>
+
+        <Row dispatchFn={dispatch} denomination={1} />
+        <Row dispatchFn={dispatch} denomination={5} />
+        <Row dispatchFn={dispatch} denomination={10} />
+        <Row dispatchFn={dispatch} denomination={20} />
+        <Row dispatchFn={dispatch} denomination={50} />
+        <Row dispatchFn={dispatch} denomination={100} />
+
       </div>
+
 
     </div>
   )
