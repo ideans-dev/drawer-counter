@@ -1,15 +1,18 @@
 .container {
-  min-height: 50vh;
-  /* width: 60%; */
-  min-width: 390px;
   min-height: 80vh;
+  /* min-height: 50vh; */
+  min-width: 390px;
+  width: 90%;
   padding: 0 2em;
 
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-
+  align-items: flex-start;
 }
+
+/* .denominationRows {
+  border-left: solid white 1px;
+} */
 
 .denominationRows, .dataRows {
   /* border: groove white 1px; */
