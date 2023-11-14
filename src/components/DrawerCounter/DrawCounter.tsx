@@ -66,8 +66,9 @@ export default function DrawerCounter() {
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
   const [total, setTotal] = React.useState(0);
-  const [expectedTotal, setExpectedTotal] = React.useState();
-  const [difference, setDifference] = React.useState(0);
+  const [drawer1Expected, setDrawer1Expected] = React.useState();
+  const [drawer2Expected, setDrawer2Expected] = React.useState();
+  const [totalExpected, setTotalExpected] = React.useState(0);
 
 
   React.useEffect(() => {
@@ -77,29 +78,60 @@ export default function DrawerCounter() {
   }, [state])
 
   React.useEffect(() => {
-    let newDifference = Number(total) - Number(expectedTotal);
-    if (Number(newDifference)) {
-      setDifference(newDifference);
+    let newTotalExpected = Number(drawer1Expected) 
+      + Number(drawer2Expected) 
+      - 200;
+    // if (Number(newDifference)) {
+    //   setDifference(newDifference);
+    // }
+    if (!isNaN(newTotalExpected)) {
+      setTotalExpected(newTotalExpected)
     }
-  }, [total, expectedTotal])
+  }, [drawer1Expected, drawer2Expected])
 
-  const handleChangeExpected = ({ target: { value } }: any) => {
-    setExpectedTotal(value);
+  const handleChangeDrawer1 = ({ target: { value } }: any) => {
+    setDrawer1Expected(value);
+  }
+  const handleChangeDrawer2 = ({ target: { value } }: any) => {
+    setDrawer2Expected(value);
   }
 
 
   return (
     <div className={styles.container}>
 
-      <div className={styles.dataRows}>
-        <div className={styles.totalRow}>
-          <span>Total</span>
-          <span> </span>
-          <span className={styles.totalValue}>
-            ${total}
-          </span>
+      <div className={styles.drawerRows}>
+
+        <div className={styles.drawerOne}>
+          <span>Drawer 1 Expected Balance</span>
+          <input
+            className={styles.drawerExpectedInput}
+            type="number"
+            onChange={handleChangeDrawer1}
+            value={drawer1Expected}
+          />
+
         </div>
 
+        <div className={styles.drawerTwo}>
+          <span>Drawer 2 Expected Balance</span>
+          <input
+            className={styles.drawerExpectedInput}
+            type="number"
+            onChange={handleChangeDrawer2}
+            value={drawer2Expected}
+          />
+        </div>
+
+        <div className={styles.totalExpected}>
+          <span></span>
+          <span>${totalExpected}</span>
+        </div>
+
+      </div>
+
+      {/* <div className={styles.dataRows}>
+  
         <div className={styles.differenceRow}>
           <span>Expected</span>
           <span></span>
@@ -121,7 +153,7 @@ export default function DrawerCounter() {
           </span>
         </div>
 
-      </div>
+      </div> */}
 
 
       <div className={styles.denominationRows}>
@@ -133,6 +165,13 @@ export default function DrawerCounter() {
         <Row dispatchFn={dispatch} denomination={50} />
         <Row dispatchFn={dispatch} denomination={100} />
 
+      <div className={styles.totalRow}>
+          <span>Total</span>
+          <span> </span>
+          <span className={styles.totalValue}>
+            ${total}
+          </span>
+        </div>
       </div>
 
 
