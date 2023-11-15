@@ -1,0 +1,24 @@
+.container {
+  max-width: 400px !important;
+  min-width: 300px !important;
+  width: 50% !important;
+}
+
+.segmentGroup {
+  width: 100%;
+  max-width: 400px;
+
+}
+
+/* .segment {
+} */
+
+.input {
+  /* max-width: 100px !important;s */
+  width: 30% !important;
+}
+
+.flexSpaceBetween {
+  display: flex !important;
+  justify-content: space-evenly !important;
+}

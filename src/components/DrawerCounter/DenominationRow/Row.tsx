@@ -18,12 +18,12 @@ export default function Row( props: IProps ) {
     setAmount( value );
     let newTotal = props.denomination * Number( value );
     setTotal( newTotal );
-  }
+  };
 
   React.useEffect( () => {
-    const actionType = "update " + denomination + "s"
-    dispatchFn( { type: actionType, payload: total } )
-  }, [ total, dispatchFn, denomination ] )
+    const actionType =denomination;
+    dispatchFn( { type: actionType, payload: total } );
+  }, [ total, dispatchFn, denomination ] );
 
 
   return (
