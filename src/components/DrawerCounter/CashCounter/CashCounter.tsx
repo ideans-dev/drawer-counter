@@ -93,10 +93,11 @@ export default function CashCounter( { setTotal, total }: any ) {
         <DenominationRow dispatchFn={dispatch} denomination="100" value={state["100"]} />
         <Segment className={ styles.row }>
           <div className={styles.inputContainer}>
-            <span>Grand Total</span>
+            <h3>Grand Total</h3>
           </div>
           <div className={styles.sumContainer}>${ total }</div>
         </Segment>
+        <Segment></Segment>
       </Segment.Group>
     </Container>
   );
@@ -117,6 +118,7 @@ function DenominationRow({ dispatchFn, denomination, value }: any) {
               className={ styles.input }
               label={denomination}
               placeholder="# of Bills"
+              type="number"
               onChange={ ( event ) => dispatchFn( { type: denomination, payload: event.target.value } ) }
               value={value}
             />

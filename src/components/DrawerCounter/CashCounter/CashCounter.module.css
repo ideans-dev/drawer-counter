@@ -24,8 +24,12 @@
   /* width: 100%; */
 }
 
-
 .row {
   display: flex;
   justify-content: space-around;
+}
+
+.segmentGroup {
+  /* min-height: 600px !important; */
+  height: 100% !important;
 }

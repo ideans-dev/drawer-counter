@@ -2,6 +2,8 @@
 import React from 'react';
 import styles from './DrawerCounter.module.css';
 import CashCounter from './CashCounter/CashCounter';
+import ExpectedBalances from './ExpectedBalances/ExpectedBalances'
+import Breakdown from './Breakdown/Breakdown';
 
 
 export default function DrawerCounter() {
@@ -28,27 +30,18 @@ export default function DrawerCounter() {
 
   return (
     <div className={ styles.container }>
-      <div className={styles.cashcounterArea}>
+      <div className={ styles.cashcounterArea }>
         <CashCounter setTotal={ setTotal } total={ total } />
       </div>
 
-      <div className={styles.drawersArea}>
-        <DrawerData />
+      <div className={ styles.drawersArea }>
+        <ExpectedBalances  totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
       </div>
 
-      <div className={styles.breakdownArea}>
+      {/* <div className={ styles.breakdownArea }>
+        <Breakdown/>
+      </div> */}
 
-      </div>
-
-    </div>
-  )
-}
-
-function DrawerData() {
-
-  return (
-    <div className={styles.drawerCounter}>
-      <span>TEST</span>
     </div>
   )
 }

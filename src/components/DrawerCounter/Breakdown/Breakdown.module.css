@@ -1,0 +1,10 @@
+.container {
+  width: 100% !important;
+  height: 100%;
+}
+
+.segmentGroup {
+  justify-items: stretch;
+  height: 100% !important;
+  /* min-height: 600px !important; */
+}
