@@ -15,7 +15,7 @@
 }
 
 .inputContainer {
-    min-width: 30%;
+    min-width: 15%;
 }
 
 .total {
@@ -25,5 +25,9 @@
 .input {
   line-height: 2em;
   font-size: 22px;
+<<<<<<< HEAD:src/components/DrawerCounter/DenominationRow/row.module.css
   text-align: center;
+=======
+  width: 90%;
+>>>>>>> 406926cbc0f47a6c818a999069497643e9232ab6:src/components/DenominationRow/row.module.css
 }
