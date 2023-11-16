@@ -5,7 +5,8 @@ import DrawerCounter from '@/components/DrawerCounter/DrawCounter';
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h2>Skylinks at Buchanan Fields</h2>
+      <img src="skylinks.png" />
+      {/* <h2>Skylinks at Buchanan Fields</h2> */}
       <DrawerCounter />
     </main>
   )

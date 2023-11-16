@@ -1,24 +1,35 @@
 .container {
-  max-width: 400px !important;
-  min-width: 300px !important;
-  width: 50% !important;
+  width: 100% !important;
+  height: 100%;
+}
+
+.inputContainer {
+  width: 50%;
+  display: flex;
+  justify-items: stretch;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sumContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+
+}
+
+.input {
+  /* width: 100%; */
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
 }
 
 .segmentGroup {
-  width: 100%;
-  max-width: 400px;
-
-}
-
-/* .segment {
-} */
-
-.input {
-  /* max-width: 100px !important;s */
-  width: 30% !important;
-}
-
-.flexSpaceBetween {
-  display: flex !important;
-  justify-content: space-evenly !important;
+  /* min-height: 600px !important; */
+  height: 100% !important;
 }

@@ -4,22 +4,22 @@ import styles from './CashCounter.module.css';
 import { Container, Input, Segment } from 'semantic-ui-react';
 
 type IState = {
-  "1": number,
-  "5": number,
-  "10": number,
-  "20": number,
-  "50": number,
-  "100": number,
+  "1": string,
+  "5": string,
+  "10": string,
+  "20": string,
+  "50": string,
+  "100": string,
 }
 
 
 const INITIAL_STATE: IState = {
-  "1": 0,
-  "5": 0,
-  "10": 0,
-  "20": 0,
-  "50": 0,
-  "100": 0,
+  "1": "",
+  "5": "",
+  "10": "",
+  "20": "",
+  "50": "",
+  "100": "",
 }
 
 function reducer( state: IState, action: any ): IState {
@@ -55,60 +55,77 @@ function reducer( state: IState, action: any ): IState {
   }
 }
 
-function calcDrawerTotal( denominationValues: number[] ): number {
-  return denominationValues.reduce( ( total, currentValue ) => total += currentValue, 0 );
+const InitialSumsState = {
+  "1": "",
+  "5": "",
+  "10": "",
+  "20": "",
+  "50": "",
+  "100": "",
 }
 
-
-export default function CashCounter({setTotal}: any) {
-
+export default function CashCounter( { setTotal, total }: any ) {
   const [ state, dispatch ] = React.useReducer( reducer, INITIAL_STATE );
 
   React.useEffect( () => {
+    let denominationCounts = Object.values( state );
+    let denominations = Object.keys( state );
+    let denominationSums = denominations.map((denom, index) => {
+      return Number(denom) * Number(denominationCounts[index]);
+    })
 
-    let denominationValues = Object.values( state );
-    let newTotal = calcDrawerTotal( denominationValues );
-    setTotal( newTotal );
+    let totalSum = denominationSums.reduce((totalSum, currentSum) => totalSum += currentSum, 0);
+    if (Number(totalSum)) {
+      setTotal(totalSum);
+    }
 
   }, [ state ] )
 
-  const handleChange = ({target: {value}}: any) => {
-    dispatch({type: })
-  }
 
   return (
-    <Container className={styles.container}>
-      <Segment.Group className={styles.segmentGroup}>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="1s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
+    <Container className={ styles.container }>
+      <Segment.Group className={ styles.segmentGroup }>
+        <DenominationRow dispatchFn={dispatch} denomination="1" value={state["1"]} />
+        <DenominationRow dispatchFn={dispatch} denomination="5" value={state["5"]} />
+        <DenominationRow dispatchFn={dispatch} denomination="10" value={state["10"]} />
+        <DenominationRow dispatchFn={dispatch} denomination="20" value={state["20"]} />
+        <DenominationRow dispatchFn={dispatch} denomination="50" value={state["50"]} />
+        <DenominationRow dispatchFn={dispatch} denomination="100" value={state["100"]} />
+        <Segment className={ styles.row }>
+          <div className={styles.inputContainer}>
+            <h3>Grand Total</h3>
+          </div>
+          <div className={styles.sumContainer}>${ total }</div>
         </Segment>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="5s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
-        </Segment>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="10s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
-        </Segment>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="20s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
-        </Segment>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="50s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
-        </Segment>
-        <Segment className={styles.flexSpaceBetween}>
-          <Input className={styles.input} label="100s" placeholder="# of Bills" />
-          <Input className={styles.input} value="total" label="$" />
-        </Segment>
-
-        <Segment className={styles.flexSpaceBetween}>
-          <span>Grand Total</span>
-          <span>$----</span>
-        </Segment>
+        <Segment></Segment>
       </Segment.Group>
     </Container>
   );
+}
+
+function DenominationRow({ dispatchFn, denomination, value }: any) {
+  const [ sum, setSum ] = React.useState(0);
+
+  React.useEffect(() => {
+    let newSum = Number(value) * Number(denomination);
+    setSum(newSum);
+  }, [value])
+
+  return (
+    <Segment className={ styles.row }>
+          <div className={ styles.inputContainer }>
+            <Input
+              className={ styles.input }
+              label={denomination}
+              placeholder="# of Bills"
+              type="number"
+              onChange={ ( event ) => dispatchFn( { type: denomination, payload: event.target.value } ) }
+              value={value}
+            />
+          </div>
+          <div className={ styles.sumContainer }>
+            ${sum}
+          </div>
+        </Segment>
+  )
 }

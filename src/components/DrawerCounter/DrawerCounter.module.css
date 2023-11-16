@@ -1,59 +1,33 @@
 .container {
-  min-height: 80vh;
-  /* min-height: 50vh; */
-  min-width: 390px;
-  width: 90%;
-  padding: 0 2em;
+  width: 100vw;
+  height: 90vh;
+  padding: 1em;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+    "drawers counter"
+    "breakdown breakdown";
+  justify-items: stretch;
+  align-content: stretch;
 }
 
-/* .denominationRows {
-  border-left: solid white 1px;
-} */
-
-.denominationRows, .dataRows {
-  /* border: groove white 1px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-
+.cashcounterArea {
+  grid-area: counter;
+  /* background-color: red; */
 }
 
-.totalRow, .differenceRow, .differenceRow2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 100%;
-  align-items: center;
-  height: 1em;
-  min-height: 60px;
+.drawersArea {
+  grid-area: drawers;
+  /* background-color: blue; */
+}
+
+.breakdownArea {
+  grid-area: breakdown;
+  /* background-color: green; */
+}
+
+.breakdownArea, .drawersArea, .cashcounterArea {
   padding: 1em;
 }
-
-.differenceRow span, .totalRow span, .differenceRow2 span {
-  width: 25%;
-}
-
-.totalRow span {
-  min-width: 15%;
-}
-
-.inputContainer {
-  min-width: 15%;
-}
-
-.expectedInput {
-  line-height: 2em;
-  font-size: 22px;
-  max-width: 80%;
-}
-/* 
-.totalValue, .difference {
-  font-size: 28px;
-  font-weight: 700;
-  min-width: 15%;
-} */
