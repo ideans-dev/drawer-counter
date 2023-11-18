@@ -4,6 +4,7 @@ import styles from './CashCounter.module.css';
 import { Container, Input, Segment } from 'semantic-ui-react';
 
 type IState = {
+  ".25": string,
   "1": string,
   "5": string,
   "10": string,
@@ -14,6 +15,7 @@ type IState = {
 
 
 const INITIAL_STATE: IState = {
+  ".25": "",
   "1": "",
   "5": "",
   "10": "",
@@ -24,6 +26,10 @@ const INITIAL_STATE: IState = {
 
 function reducer( state: IState, action: any ): IState {
   switch ( action.type ) {
+    case '.25': {
+      const newState: IState = { ...state, ".25": action.payload };
+      return newState;
+    }
     case '1': {
       const newState: IState = { ...state, "1": action.payload };
       return newState;
@@ -56,6 +62,7 @@ function reducer( state: IState, action: any ): IState {
 }
 
 const InitialSumsState = {
+  ".25": "",
   "1": "",
   "5": "",
   "10": "",
@@ -85,6 +92,7 @@ export default function CashCounter( { setTotal, total }: any ) {
   return (
     <Container className={ styles.container }>
       <Segment.Group className={ styles.segmentGroup }>
+        <DenominationRow dispatchFn={dispatch} denomination=".25" value={state[".25"]} />
         <DenominationRow dispatchFn={dispatch} denomination="1" value={state["1"]} />
         <DenominationRow dispatchFn={dispatch} denomination="5" value={state["5"]} />
         <DenominationRow dispatchFn={dispatch} denomination="10" value={state["10"]} />

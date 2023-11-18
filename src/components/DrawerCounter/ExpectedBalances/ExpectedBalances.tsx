@@ -35,6 +35,7 @@ export default function ExpectedBalances( { totalExpected, setTotalExpected }: a
                 className={ styles.input }
                 label="Drawer 2"
                 placeholder="Expected Balance"
+                type="number"
                 onChange={ ( { target: { value } } ) => setDrawer2( value ) }
                 value={ drawer2 }
               />
