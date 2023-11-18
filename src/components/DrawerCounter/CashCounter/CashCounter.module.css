@@ -1,5 +1,7 @@
 .container {
   width: 100% !important;
+  min-width: 300px !important;
+  max-width: 400px;
   height: 100%;
 }
 
@@ -21,7 +23,7 @@
 }
 
 .input {
-  /* width: 100%; */
+  width: 70%;
 }
 
 .row {

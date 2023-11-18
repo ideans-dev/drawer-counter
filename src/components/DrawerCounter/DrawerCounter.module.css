@@ -16,10 +16,12 @@
 .cashcounterArea {
   grid-area: counter;
   /* background-color: red; */
+  /* max-width: 400px; */
 }
 
 .drawersArea {
   grid-area: drawers;
+  /* max-width: 400px; */
   /* background-color: blue; */
 }
 
