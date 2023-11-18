@@ -9,19 +9,19 @@ import Breakdown from './Breakdown/Breakdown';
 export default function DrawerCounter() {
 
   const [ total, setTotal ] = React.useState( 0 );
-  const [ drawer1Expected, setDrawer1Expected ] = React.useState();
-  const [ drawer2Expected, setDrawer2Expected ] = React.useState();
+  // const [ drawer1Expected, setDrawer1Expected ] = React.useState();
+  // const [ drawer2Expected, setDrawer2Expected ] = React.useState();
   const [ totalExpected, setTotalExpected ] = React.useState( 0 );
 
-  React.useEffect( () => {
+  // React.useEffect( () => {
 
-    let newTotalExpected = Number( drawer1Expected )
-      + Number( drawer2Expected );
+  //   let newTotalExpected = Number( drawer1Expected )
+  //     + Number( drawer2Expected );
 
-    if ( !isNaN( newTotalExpected ) ) {
-      setTotalExpected( newTotalExpected )
-    }
-  }, [ total ] )
+  //   if ( !isNaN( newTotalExpected ) ) {
+  //     setTotalExpected( newTotalExpected )
+  //   }
+  // }, [ total ] )
 
   const handleChangeExpected = ( { target: { value } }: any ) => {
     setTotalExpected( value );
