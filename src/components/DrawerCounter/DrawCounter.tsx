@@ -11,7 +11,7 @@ export default function DrawerCounter() {
   const [ total, setTotal ] = React.useState( 0 );
   // const [ drawer1Expected, setDrawer1Expected ] = React.useState();
   // const [ drawer2Expected, setDrawer2Expected ] = React.useState();
-  const [ totalExpected, setTotalExpected ] = React.useState( 0 );
+  const [ totalExpected, setTotalExpected ] = React.useState( "" );
 
   // React.useEffect( () => {
 

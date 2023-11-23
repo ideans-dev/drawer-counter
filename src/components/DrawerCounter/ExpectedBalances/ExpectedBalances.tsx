@@ -5,16 +5,16 @@ import { Container, Input, Segment } from 'semantic-ui-react';
 export default function ExpectedBalances( { total, totalExpected, setTotalExpected }: any ) {
   const [ drawer1, setDrawer1 ] = React.useState( "" );
   const [ drawer2, setDrawer2 ] = React.useState( "" );
-  const [difference, setDifference] = React.useState( null || 0 )
+  const [difference, setDifference] = React.useState( "" )
 
   React.useEffect( () => {
-    let newExpectedTotal = Number( drawer1 ) + Number( drawer2 );
+    let newExpectedTotal: string = (Number( drawer1 ) + Number( drawer2 )).toFixed(2);
     setTotalExpected( newExpectedTotal )
 
   }, [ drawer1, drawer2 ] )
 
   React.useEffect(() => {
-    let newDifference = Number(total) - Number(totalExpected);
+    let newDifference: string = (Number(total) - Number(totalExpected)).toFixed(2);
     setDifference( newDifference );
   }, [total, totalExpected])
 
