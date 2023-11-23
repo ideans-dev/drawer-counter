@@ -35,7 +35,7 @@ export default function DrawerCounter() {
       </div>
 
       <div className={ styles.drawersArea }>
-        <ExpectedBalances  totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
+        <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
       </div>
 
       {/* <div className={ styles.breakdownArea }>
