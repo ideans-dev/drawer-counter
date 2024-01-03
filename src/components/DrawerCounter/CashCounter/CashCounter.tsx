@@ -73,6 +73,7 @@ const InitialSumsState = {
 
 export default function CashCounter( { setTotal, total }: any ) {
   const [ state, dispatch ] = React.useReducer( reducer, INITIAL_STATE );
+  const [ dropAmount, setDropAmount ] = React.useState(0);
 
   React.useEffect( () => {
     let denominationCounts = Object.values( state );
@@ -87,6 +88,11 @@ export default function CashCounter( { setTotal, total }: any ) {
     }
 
   }, [ state ] )
+
+  React.useEffect(() => {
+    let newDropAmount = total - 200;
+    setDropAmount( newDropAmount );
+  }, [total])
 
 
   return (
@@ -104,6 +110,22 @@ export default function CashCounter( { setTotal, total }: any ) {
             <h3>Grand Total</h3>
           </div>
           <div className={styles.sumContainer}>${ total }</div>
+        </Segment>
+        <Segment className={styles.row}>
+          <div className={styles.inputContainer}>
+            <h3>Left in Drawer</h3>
+          </div>
+          <div className={styles.sumContainer}>
+            -$200 for Drawer
+          </div>
+        </Segment>
+        <Segment className={styles.row}>
+          <div className={styles.inputContainer}>
+            <h3>Drop Amount</h3>
+          </div>
+          <div className={styles.sumContainer}>
+            { dropAmount }
+          </div>
         </Segment>
         <Segment></Segment>
       </Segment.Group>

@@ -12,6 +12,7 @@ export default function DrawerCounter() {
   // const [ drawer1Expected, setDrawer1Expected ] = React.useState();
   // const [ drawer2Expected, setDrawer2Expected ] = React.useState();
   const [ totalExpected, setTotalExpected ] = React.useState( "" );
+  const [ printMode, setPrintMode ] = React.useState(true);
 
   // React.useEffect( () => {
 
@@ -27,6 +28,9 @@ export default function DrawerCounter() {
     setTotalExpected( value );
   }
 
+  const handlePrintModeButton = () => {
+    setPrintMode(!printMode);
+  }
 
   return (
     <div className={ styles.container }>
@@ -34,13 +38,16 @@ export default function DrawerCounter() {
         <CashCounter setTotal={ setTotal } total={ total } />
       </div>
 
-      <div className={ styles.drawersArea }>
+    { !printMode && 
+     ( <div className={ styles.drawersArea }>
         <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
-      </div>
+      </div>)
+}
 
-      {/* <div className={ styles.breakdownArea }>
-        <Breakdown/>
-      </div> */}
+      <div className={ styles.breakdownArea }>
+        {/* <Breakdown/> */}
+        <button onClick={() => handlePrintModeButton() }>Print Mode</button>
+      </div>
 
     </div>
   )
