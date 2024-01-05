@@ -23,7 +23,7 @@ export default function ExpectedBalances( { total, totalExpected, setTotalExpect
       <Segment.Group className={ styles.segmentGroup }>
         <Segment>
           <h3>Expected Balances</h3>
-          <Segment.Group horizontal={ true }>
+          <Segment.Group horizontal={ false }>
 
             <Segment>
               <Input
