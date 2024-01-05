@@ -11,6 +11,7 @@ type IState = {
   "20": string,
   "50": string,
   "100": string,
+  "misc": string,
 }
 
 
@@ -22,10 +23,11 @@ const INITIAL_STATE: IState = {
   "20": "",
   "50": "",
   "100": "",
+  "misc": "",
 }
 
-function reducer( state: IState, action: any ): IState {
-  switch ( action.type ) {
+function reducer(state: IState, action: any): IState {
+  switch (action.type) {
     case '.25': {
       const newState: IState = { ...state, ".25": action.payload };
       return newState;
@@ -54,6 +56,10 @@ function reducer( state: IState, action: any ): IState {
       const newState: IState = { ...state, "100": action.payload };
       return newState;
     }
+    case 'misc': {
+      const newState: IState = { ...state, "misc": action.payload };
+      return newState;
+    }
 
     default: {
       return state;
@@ -69,16 +75,20 @@ const InitialSumsState = {
   "20": "",
   "50": "",
   "100": "",
+  "misc": "",
 }
 
-export default function CashCounter( { setTotal, total }: any ) {
-  const [ state, dispatch ] = React.useReducer( reducer, INITIAL_STATE );
-  const [ dropAmount, setDropAmount ] = React.useState(0);
+export default function CashCounter({ setTotal, total }: any) {
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+  const [dropAmount, setDropAmount] = React.useState(0);
 
-  React.useEffect( () => {
-    let denominationCounts = Object.values( state );
-    let denominations = Object.keys( state );
+  React.useEffect(() => {
+    let denominationCounts = Object.values(state);
+    let denominations = Object.keys(state);
     let denominationSums = denominations.map((denom, index) => {
+      if (denom === "misc") {
+        return Number(denominationCounts[index])
+      }
       return Number(denom) * Number(denominationCounts[index]);
     })
 
@@ -87,17 +97,17 @@ export default function CashCounter( { setTotal, total }: any ) {
       setTotal(totalSum);
     }
 
-  }, [ state ] )
+  }, [state])
 
   React.useEffect(() => {
     let newDropAmount = total - 200;
-    setDropAmount( newDropAmount );
+    setDropAmount(newDropAmount);
   }, [total])
 
 
   return (
-    <Container className={ styles.container }>
-      <Segment.Group className={ styles.segmentGroup }>
+    <Container className={styles.container}>
+      <Segment.Group className={styles.segmentGroup}>
         <DenominationRow dispatchFn={dispatch} denomination=".25" value={state[".25"]} />
         <DenominationRow dispatchFn={dispatch} denomination="1" value={state["1"]} />
         <DenominationRow dispatchFn={dispatch} denomination="5" value={state["5"]} />
@@ -105,11 +115,12 @@ export default function CashCounter( { setTotal, total }: any ) {
         <DenominationRow dispatchFn={dispatch} denomination="20" value={state["20"]} />
         <DenominationRow dispatchFn={dispatch} denomination="50" value={state["50"]} />
         <DenominationRow dispatchFn={dispatch} denomination="100" value={state["100"]} />
-        <Segment className={ styles.row }>
+        <DenominationRow dispatchFn={dispatch} denomination="misc" value={state["misc"]} />
+        <Segment className={styles.row}>
           <div className={styles.inputContainer}>
             <h3>Grand Total</h3>
           </div>
-          <div className={styles.sumContainer}>${ total }</div>
+          <div className={styles.sumContainer}>${total}</div>
         </Segment>
         <Segment className={styles.row}>
           <div className={styles.inputContainer}>
@@ -124,7 +135,7 @@ export default function CashCounter( { setTotal, total }: any ) {
             <h3>Drop Amount</h3>
           </div>
           <div className={styles.sumContainer}>
-            { dropAmount }
+            {dropAmount}
           </div>
         </Segment>
         <Segment></Segment>
@@ -134,28 +145,33 @@ export default function CashCounter( { setTotal, total }: any ) {
 }
 
 function DenominationRow({ dispatchFn, denomination, value }: any) {
-  const [ sum, setSum ] = React.useState(0);
+  const [sum, setSum] = React.useState(0);
 
   React.useEffect(() => {
-    let newSum = Number(value) * Number(denomination);
-    setSum(newSum);
+    if (denomination === "misc") {
+      setSum(value)
+    } else {
+
+      let newSum = Number(value) * Number(denomination);
+      setSum(newSum);
+    }
   }, [value])
 
   return (
-    <Segment className={ styles.row }>
-          <div className={ styles.inputContainer }>
-            <Input
-              className={ styles.input }
-              label={denomination}
-              placeholder="# of Bills"
-              type="number"
-              onChange={ ( event ) => dispatchFn( { type: denomination, payload: event.target.value } ) }
-              value={value}
-            />
-          </div>
-          <div className={ styles.sumContainer }>
-            ${sum}
-          </div>
-        </Segment>
+    <Segment className={styles.row}>
+      <div className={styles.inputContainer}>
+        <Input
+          className={styles.input}
+          label={denomination}
+          placeholder="# of Bills"
+          type="number"
+          onChange={(event) => dispatchFn({ type: denomination, payload: event.target.value })}
+          value={value}
+        />
+      </div>
+      <div className={styles.sumContainer}>
+        ${sum}
+      </div>
+    </Segment>
   )
 }

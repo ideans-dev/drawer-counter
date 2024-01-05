@@ -36,7 +36,7 @@ export default function DrawerCounter() {
     <div className={ styles.container }>
       <div className={ styles.cashcounterArea }>
         <CashCounter setTotal={ setTotal } total={ total } />
-      <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
+        <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
       </div>
 
     { !printMode && 
