@@ -2,7 +2,7 @@
   width: 100% !important;
   min-width: 300px !important;
   max-width: 400px;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .inputContainer {
@@ -33,5 +33,5 @@
 
 .segmentGroup {
   /* min-height: 600px !important; */
-  height: 100% !important;
+  /* height: 100% !important; */
 }

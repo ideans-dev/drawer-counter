@@ -1,14 +1,18 @@
 .container {
-  width: 100vw;
+  /* width: 100vw; */
   height: 90vh;
   padding: 1em;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr 1fr;
   grid-template-areas:
-    "drawers counter"
-    "breakdown breakdown";
+    "counter"
+    "breakdown"; */
+  
+  display: flex;
+  justify-content: center;
   justify-items: stretch;
   align-content: stretch;
 }

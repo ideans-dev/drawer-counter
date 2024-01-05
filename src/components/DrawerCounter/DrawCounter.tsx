@@ -36,18 +36,18 @@ export default function DrawerCounter() {
     <div className={ styles.container }>
       <div className={ styles.cashcounterArea }>
         <CashCounter setTotal={ setTotal } total={ total } />
+      <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
       </div>
 
     { !printMode && 
      ( <div className={ styles.drawersArea }>
-        <ExpectedBalances total={total} totalExpected={totalExpected} setTotalExpected={setTotalExpected} />
       </div>)
 }
 
-      <div className={ styles.breakdownArea }>
+      {/* <div className={ styles.breakdownArea }> */}
         {/* <Breakdown/> */}
-        <button onClick={() => handlePrintModeButton() }>Print Mode</button>
-      </div>
+        {/* <button onClick={() => handlePrintModeButton() }>Print Mode</button> */}
+      {/* </div> */}
 
     </div>
   )
