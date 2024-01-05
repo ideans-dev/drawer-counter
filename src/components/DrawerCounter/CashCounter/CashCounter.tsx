@@ -135,7 +135,7 @@ export default function CashCounter({ setTotal, total }: any) {
             <h3>Drop Amount</h3>
           </div>
           <div className={styles.sumContainer}>
-            {dropAmount}
+            $ {dropAmount}
           </div>
         </Segment>
         <Segment></Segment>

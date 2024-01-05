@@ -60,7 +60,10 @@ export default function ExpectedBalances( { total, totalExpected, setTotalExpect
         </Segment>
 
         <Segment>
-
+          Name: <Input />
+        </Segment>
+        <Segment>
+          Date: <Input />
         </Segment>
       </Segment.Group>
 
